@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>مخزن إدارة تقنية المعلومات</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,600;0,6..72,800;1,6..72,400;1,6..72,600&family=Amiri:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root{--paper:#fff;--ink:#111;--mute:#666;--tint:#ececec;color-scheme:light;--font:'Newsreader','Amiri',Georgia,serif;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+:root[dir=rtl]{--font:'Amiri','Newsreader',Georgia,serif}
+@media (prefers-color-scheme:dark){:root:not([data-theme=light]){--paper:#121212;--ink:#f2f2f2;--mute:#9b9b9b;--tint:#242424;color-scheme:dark}}
+*,*::before,*::after{box-sizing:inherit}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--font);font-size:18px;line-height:1.55;min-height:100vh}
+button,input,select,textarea{font:inherit;color:inherit}
+:focus-visible{outline:3px solid var(--ink);outline-offset:3px}
+.wrap{max-width:1120px;margin:0 auto;padding:0 20px}
+header{border-bottom:6px double var(--ink)}
+header .wrap{display:flex;align-items:flex-end;justify-content:space-between;gap:12px;padding-block:34px 14px}
+h1{margin:0;font-size:clamp(38px,8vw,84px);font-weight:800;line-height:1.05}
+html[lang=en] h1{letter-spacing:-.02em}
+.lang{background:none;border:1px solid var(--ink);padding:4px 16px;font-weight:700;cursor:pointer;transition:background .15s,color .15s}
+.lang:hover{background:var(--ink);color:var(--paper)}
+nav{background:var(--paper);border-bottom:1px solid var(--ink);position:sticky;top:0;z-index:5}
+nav .wrap{display:flex;gap:28px;overflow-x:auto}
+nav button{background:none;border:0;border-bottom:4px solid transparent;padding:12px 0 8px;font-size:19px;font-weight:600;color:var(--mute);cursor:pointer;white-space:nowrap}
+nav button[aria-selected=true]{color:var(--ink);font-weight:800;border-bottom-color:var(--ink)}
+nav button:hover{color:var(--ink)}
+main{padding-block:28px 70px}
+.btn{display:inline-flex;align-items:center;background:var(--ink);color:var(--paper);border:1px solid var(--ink);padding:9px 22px;font-weight:700;cursor:pointer;transition:background .15s,color .15s}
+.btn:hover{background:var(--paper);color:var(--ink)}
+.btn.alt{background:transparent;color:var(--ink)}.btn.alt:hover{background:var(--ink);color:var(--paper)}
+.btn.blk{background:transparent;color:var(--ink);border-color:transparent;text-decoration:underline;text-underline-offset:4px;padding-inline:8px}
+.btn.blk:hover{background:transparent;text-decoration-thickness:3px}
+.btn.sm{padding:3px 14px;font-size:16px}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);border-block:1px solid var(--ink);margin-bottom:34px}
+.stat{padding:18px 18px 14px}.stat+.stat{border-inline-start:1px solid var(--ink)}
+.stat b{display:block;font-size:clamp(44px,9vw,92px);font-weight:400;line-height:1}
+.stat span{font-style:italic;color:var(--mute);font-size:17px}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:34px}
+@media(max-width:800px){.grid2{grid-template-columns:1fr}}
+.panel{margin-bottom:34px}
+.panel h2{margin:0 0 14px;padding-top:10px;border-top:3px solid var(--ink);font-size:28px;font-weight:800;line-height:1.2}
+.bar{display:flex;align-items:center;gap:10px;margin:10px 0;font-size:16px}
+.bar i{display:block;height:14px;background:var(--ink);min-width:3px;transition:width .5s}
+.bar i.r{background:repeating-linear-gradient(45deg,var(--ink) 0 2px,transparent 2px 6px);border:1px solid var(--ink)}
+.bar span.l{flex:0 0 34%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.tools{display:flex;flex-wrap:wrap;gap:18px;align-items:flex-end;margin-bottom:30px}
+.tools input,.tools select,.f input,.f select,.f textarea{background:transparent;border:0;border-bottom:1px solid var(--ink);border-radius:0;padding:8px 2px;min-width:0}
+.tools input{flex:1 1 220px}select option{background:var(--paper);color:var(--ink)}
+.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:34px 26px}
+.card{border-top:3px solid var(--ink);display:flex;flex-direction:column;padding-top:12px;animation:in .25s both}
+@keyframes in{from{opacity:0;transform:translateY(6px)}}
+.pic{aspect-ratio:4/3;background:var(--tint);display:grid;place-items:center;font-size:64px;font-style:italic;overflow:hidden}
+.pic img{width:100%;height:100%;object-fit:cover;filter:none;cursor:zoom-in}
+.cb{padding-block:12px;flex:1;display:flex;flex-direction:column;gap:4px}
+.cb h3{margin:0;font-size:24px;font-weight:800;line-height:1.2;overflow-wrap:anywhere}
+.meta{font-size:15px;color:var(--mute);font-style:italic}
+.qty{display:flex;justify-content:space-between;align-items:baseline}
+.qty big{font-size:46px;font-weight:400;line-height:1}
+.badge{align-self:flex-start;font-size:14px;font-weight:700;border-bottom:2px solid var(--ink)}
+.badge.out{color:var(--mute);border-bottom-style:dotted;font-style:italic}
+.mini{height:3px;background:var(--tint)}.mini i{display:block;height:100%;background:var(--ink)}
+.acts{display:flex;flex-wrap:wrap;gap:8px;padding-top:10px;border-top:1px solid var(--ink)}
+.list{display:flex;flex-direction:column}
+.row{display:flex;gap:12px;align-items:baseline;padding:10px 0;border-bottom:1px solid var(--tint);flex-wrap:wrap}
+.row .tag{flex:0 0 74px;font-style:italic;font-weight:700;border-bottom:1px solid var(--ink)}
+.row .n{flex:1 1 160px;font-weight:600;overflow-wrap:anywhere}.row .d{font-size:14px;color:var(--mute);font-weight:400}
+.empty{padding:34px;text-align:center;border:1px dashed var(--ink);font-style:italic}
+.modal{position:fixed;inset:0;background:rgba(0,0,0,.55);display:none;align-items:center;justify-content:center;padding:16px;z-index:20}
+.modal.on{display:flex}
+.box{background:var(--paper);border-top:8px solid var(--ink);width:100%;max-width:480px;max-height:92vh;overflow:auto;padding:24px;animation:in .2s both}
+.box h2{margin:0 0 16px;font-size:30px;font-weight:800;line-height:1.15}
+.f{display:flex;flex-direction:column;gap:2px;margin-bottom:14px;font-weight:700;font-size:16px}
+.f input,.f select,.f textarea{width:100%;font-weight:400}.f .e{font-style:italic;font-weight:400;font-size:15px}
+.f input.bad{border-bottom:3px solid var(--ink);background:var(--tint)}
+.seg{display:flex;flex-wrap:wrap;margin-bottom:14px}
+.seg label{flex:1 1 30%;text-align:center;border:1px solid var(--ink);padding:6px 4px;cursor:pointer;font-weight:700;font-size:16px;margin:0 -1px -1px 0}
+.seg input{position:absolute;opacity:0}.seg label:has(input:checked){background:var(--ink);color:var(--paper)}.seg label:has(input:focus-visible){outline:3px solid var(--ink);outline-offset:2px}
+.foot{display:flex;gap:10px;justify-content:flex-end;flex-wrap:wrap;margin-top:8px}
+.prev{max-height:130px;max-width:100%;margin-bottom:8px;display:block;filter:none}
+#toast{position:fixed;inset-block-end:calc(16px + env(safe-area-inset-bottom,0px));inset-inline:16px;display:flex;justify-content:center;z-index:40;pointer-events:none}
+#toast div{background:var(--ink);color:var(--paper);padding:10px 22px;font-weight:700;animation:in .2s both}
+#toast div.err{font-style:italic;outline:2px solid var(--paper);outline-offset:-5px}
+:root{--paper:#e6e5e1;--card:#f5f4f1;--ink:#1f2326;--mute:#59616a;--tint:#d2d1cc;--amber:var(--ink);--edge:rgba(31,35,38,.12);--soft:0 1px 2px rgba(20,24,28,.08),0 10px 28px rgba(20,24,28,.08);--ease:cubic-bezier(.2,.7,.2,1)}
+@media (prefers-color-scheme:dark){:root:not([data-theme=light]){--paper:#15181b;--card:#1f2327;--ink:#eceae4;--mute:#9aa2a8;--tint:#2b3034;--edge:rgba(255,255,255,.1);--soft:0 1px 2px rgba(0,0,0,.4),0 10px 28px rgba(0,0,0,.35)}}
+html{scroll-behavior:smooth}
+header{background:#23272b;color:#f1efe9;border-bottom:0}
+header::after{content:"";display:block;height:12px;background:repeating-linear-gradient(-45deg,#f1efe9 0 16px,#1f2326 16px 32px)}
+header :focus-visible{outline-color:#f1efe9}
+.lang{color:#f1efe9;border:1px solid rgba(241,239,233,.55);border-radius:10px}
+.lang:hover{background:#f1efe9;color:#23272b}
+nav{background:var(--card);border-bottom:1px solid var(--edge);box-shadow:0 4px 14px rgba(20,24,28,.06)}
+nav button{transition:color .2s var(--ease),border-color .2s var(--ease)}
+nav button[aria-selected=true]{border-bottom-color:var(--amber)}
+.btn{background:var(--ink);color:var(--paper);border:1px solid transparent;border-radius:10px;box-shadow:0 1px 2px rgba(20,24,28,.2);transition:transform .2s var(--ease),box-shadow .2s var(--ease),background .2s}
+.btn:hover{background:var(--ink);color:var(--paper);transform:translateY(-2px);box-shadow:0 6px 16px rgba(20,24,28,.3)}
+.btn.alt{background:transparent;color:var(--ink);border-color:var(--edge);box-shadow:none}
+.btn.alt:hover{background:var(--tint);color:var(--ink);box-shadow:none}
+.btn.blk{background:transparent;box-shadow:none;border-color:transparent}.btn.blk:hover{background:transparent;box-shadow:none;transform:none}
+.stats{background:var(--card);border:1px solid var(--edge);border-radius:18px;box-shadow:var(--soft);overflow:hidden}
+.stat+.stat{border-inline-start:1px solid var(--edge)}
+.panel{background:var(--card);border:1px solid var(--edge);border-radius:18px;box-shadow:var(--soft);padding:20px}
+.panel h2{border-top:0;border-inline-start:6px solid var(--amber);padding:0 12px;margin-bottom:16px}
+.bar i{background:linear-gradient(90deg,#777,var(--ink));border-radius:0 8px 8px 0}.bar i.r{background:var(--tint);border:1px dashed var(--mute)}
+.tools input,.tools select,.f input,.f select,.f textarea{background:var(--card);border:1px solid var(--edge);border-radius:10px;padding:10px 12px;transition:border-color .2s,box-shadow .2s}
+.tools input:focus,.tools select:focus,.f input:focus,.f select:focus,.f textarea:focus{border-color:var(--amber);box-shadow:0 0 0 3px rgba(128,128,128,.4);outline:0}
+.f input.bad{background:var(--tint);border:1px solid var(--ink);box-shadow:0 0 0 2px var(--ink)}
+.card{background:var(--card);border:1px solid var(--edge);border-top:1px solid var(--edge);border-radius:18px;box-shadow:var(--soft);padding:12px;transition:transform .3s var(--ease),box-shadow .3s var(--ease)}
+.card:hover{transform:translateY(-4px);box-shadow:0 2px 4px rgba(20,24,28,.08),0 18px 38px rgba(20,24,28,.16)}
+.pic{border-radius:12px;background:repeating-linear-gradient(135deg,var(--tint) 0 14px,var(--paper) 14px 28px)}
+.pic img{transition:transform .5s var(--ease)}.card:hover .pic img{transform:scale(1.04)}
+.badge{background:var(--ink);color:var(--paper);border:0;border-radius:20px;padding:0 12px}
+.badge.out{background:var(--tint);color:var(--mute)}
+.mini{background:var(--tint);border-radius:6px;overflow:hidden;height:6px}.mini i{background:var(--amber);transition:width .5s var(--ease)}
+.acts{border-top:1px solid var(--edge)}
+.row{border-bottom:1px solid var(--edge)}.row .tag{border:0;background:var(--tint);border-radius:20px;padding:0 10px;text-align:center;font-style:normal;font-size:15px}
+.empty{background:var(--card);border:1px dashed var(--mute);border-radius:18px}
+.modal{background:rgba(20,22,24,.6);-webkit-backdrop-filter:blur(5px);backdrop-filter:blur(5px)}
+.box{background:var(--card);border-top:8px solid var(--amber);border-radius:20px;box-shadow:0 24px 70px rgba(0,0,0,.45)}
+.seg{gap:6px}.seg label{margin:0;border:1px solid var(--edge);border-radius:10px;background:var(--paper);transition:background .2s}
+.seg label:has(input:checked){background:var(--ink);color:var(--paper);border-color:var(--ink)}
+.prev{border-radius:10px}
+#toast div{border-radius:12px;box-shadow:0 10px 30px rgba(0,0,0,.35)}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
+</style>
+</head>
+<body>
+<header><div class="wrap"><h1 id="ttl"></h1><button class="lang" id="lang" aria-label="Language"></button></div></header>
+<nav><div class="wrap" role="tablist" id="tabs"></div></nav>
+<main class="wrap" id="app"></main>
+<div class="modal" id="modal" role="dialog" aria-modal="true"><div class="box" id="box"></div></div>
+<div id="toast" aria-live="polite"></div>
+<script>
+const I={ar:{title:"سجل المخزون",dash:"لوحة المعلومات",inv:"المخزون",hist:"السجل",add:"+ تسجيل منتج",
+total:"إجمالي المنتجات",avail:"الكمية المتاحة",instock:"منتجات متوفرة",used:"المستخدم",given:"المُعطى",recent:"أحدث المنتجات",acts:"آخر العمليات",
+chart:"الكميات حسب المنتج",none:"لا توجد بيانات بعد. سجّل أول منتج للبدء.",search:"ابحث باسم المنتج…",all:"كل الحالات",in:"متوفر",out:"نفد",
+allc:"كل الدول",s_new:"الأحدث إضافة",s_old:"الأقدم إضافة",s_name:"الاسم (أ-ي)",s_qty:"الأكبر كمية",s_date:"تاريخ الوصول",
+name:"اسم المنتج",qty:"الكمية",date:"تاريخ الوصول",country:"بلد المنشأ",image:"صورة المنتج",opt:"(اختياري)",save:"حفظ",cancel:"إلغاء",edit:"تعديل",del:"حذف",
+editT:"تعديل المنتج",newT:"تسجيل منتج جديد",remain:"المتبقي",of:"من",actT:"تحديث الحالة",a_available:"متوفر (إضافة)",a_used:"مستخدم",a_given:"مُعطى",
+note:"ملاحظة",apply:"تطبيق",status:"تحديث الحالة",log:"السجل",
+eReq:"هذا الحقل مطلوب",eQty:"أدخل عدد صحيحاً أكبر من صفر",eMax:"الكمية أكبر من المتاح:",eMin:"لا يمكن أن تقل الكمية عن المستخدم والمُعطى:",eImg:"الملف ليس صورة",eDate:"التاريخ لا يمكن أن يكون في المستقبل",
+delQ:"هل تريد حذف هذا المنتج وسجله نهائياً؟",yes:"نعم، احذف",saved:"تم الحفظ",deleted:"تم الحذف",done:"تمت العملية",
+t_arrival:"وصول",t_used:"استخدام",t_given:"إعطاء",t_available:"إضافة",t_edit:"تعديل",noHist:"لا توجد عمليات مسجلة",close:"إغلاق",unit:"قطعة",rm:"إزالة الصورة",avl:"متاح"},
+en:{title:"Inventory Registry",dash:"Dashboard",inv:"Inventory",hist:"History",add:"+ Register product",
+total:"Registered products",avail:"Available quantity",instock:"Products in stock",used:"Used",given:"Given away",recent:"Recently added",acts:"Recent activity",
+chart:"Quantity by product",none:"No data yet. Register your first product to start.",search:"Search by product name…",all:"All statuses",in:"In stock",out:"Depleted",
+allc:"All countries",s_new:"Newest added",s_old:"Oldest added",s_name:"Name (A-Z)",s_qty:"Highest quantity",s_date:"Arrival date",
+name:"Product name",qty:"Quantity",date:"Date of arrival",country:"Country of origin",image:"Product image",opt:"(optional)",save:"Save",cancel:"Cancel",edit:"Edit",del:"Delete",
+editT:"Edit product",newT:"Register new product",remain:"Remaining",of:"of",actT:"Update status",a_available:"Available (add)",a_used:"Used",a_given:"Given away",
+note:"Note",apply:"Apply",status:"Update status",log:"History",
+eReq:"This field is required",eQty:"Enter a whole number above zero",eMax:"Quantity exceeds what is available:",eMin:"Quantity cannot be below used + given:",eImg:"File is not an image",eDate:"Date cannot be in the future",
+delQ:"Delete this product and its history permanently?",yes:"Yes, delete",saved:"Saved",deleted:"Deleted",done:"Done",
+t_arrival:"Arrival",t_used:"Used",t_given:"Given",t_available:"Added",t_edit:"Edited",noHist:"No activity recorded",close:"Close",unit:"pcs",rm:"Remove image",avl:"available"}};
+Object.assign(I.ar,{title:"مخزن التقنية",dash:"لوحة المخزن",inv:"الأصناف",hist:"سجل",add:"إضافة صنف",total:"الأصناف المسجلة",avail:"الوحدات في الرفوف",instock:"أصناف متوفرة",used:"المستهلك",given:"المُسلَّم",recent:"آخر الأصناف المستلمة",acts:"آخر حركات المخزن",chart:"الرصيد حسب الصنف",none:"المخزن فارغ. استلم أول صنف للبدء.",search:"ابحث باسم الصنف أو الجهاز…",out:"نفد الرصيد",in:"متوفر",s_new:"الأحدث استلاماً",s_old:"الأقدم استلاماً",s_qty:"الأعلى رصيداً",s_date:"تاريخ الاستلام",name:"اسم الصنف / الجهاز",qty:"عدد الوحدات",date:"تاريخ الاستلام",country:"بلد التصنيع",image:"صورة الصنف",editT:"تعديل بيانات الصنف",newT:"استلام صنف جديد",remain:"الرصيد",actT:"تسجيل حركة",a_available:"توريد (إضافة رصيد)",a_used:"استهلاك",a_given:"تسليم لفريق",note:"ملاحظة (مثال: اسم الفريق أو رقم الطلب)",status:"تسجيل حركة",log:"الحركات",delQ:"هل تريد حذف هذا الصنف وسجل حركته نهائياً؟",t_arrival:"استلام",t_used:"استهلاك",t_given:"تسليم",t_available:"توريد",noHist:"لا توجد حركات مسجلة",unit:"وحدة"});
+Object.assign(I.en,{title:"Tech Storage",dash:"Warehouse",inv:"Items",hist:"History",add:"Add item",total:"Registered items",avail:"Units on shelves",instock:"Items in stock",used:"Consumed",given:"Handed over",recent:"Recently received",acts:"Latest movements",chart:"Stock level by item",none:"The warehouse is empty. Receive your first item to start.",search:"Search by item or device name…",out:"Out of stock",s_new:"Latest received",s_old:"Earliest received",s_qty:"Highest stock",s_date:"Received date",name:"Item / device name",qty:"Units",date:"Date received",country:"Made in",image:"Item photo",editT:"Edit item details",newT:"Receive new item",remain:"Stock",actT:"Log movement",a_available:"Restock (add units)",a_used:"Consume",a_given:"Hand over to a team",note:"Note (e.g. team name or ticket no.)",status:"Log movement",log:"Movements",delQ:"Delete this item and its movement history permanently?",t_arrival:"Received",t_used:"Consumed",t_given:"Handed over",t_available:"Restocked",noHist:"No movements recorded",unit:"units"});
+Object.assign(I.ar,{title:"مخزن إدارة تقنية المعلومات",loaned:"أجهزة معارة",a_loan:"إعارة جهاز",a_return:"إرجاع من الإعارة",t_loan:"إعارة",t_return:"إرجاع"});
+Object.assign(I.en,{title:"IT Department Storage",loaned:"Loaned devices",a_loan:"Loan out",a_return:"Return from loan",t_loan:"Loaned",t_return:"Returned"});
+const K='invreg.v1',LK='invreg.lang';
+let db={p:[],t:[]},lang='ar',tab='dash',F={q:'',st:'all',c:'all',s:'new'};
+try{const r=localStorage.getItem(K);if(r)db=JSON.parse(r);const l=localStorage.getItem(LK);if(l)lang=l}catch(e){}
+const t=k=>I[lang][k]||k,$=s=>document.querySelector(s);
+const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const nf=n=>new Intl.NumberFormat(lang==='ar'?'ar-u-nu-latn':'en-US').format(n);
+const df=d=>{try{return new Date(d).toLocaleDateString(lang==='ar'?'ar-u-nu-latn':'en-GB',{year:'numeric',month:'short',day:'numeric'})}catch(e){return d}};
+const tf=d=>new Date(d).toLocaleString(lang==='ar'?'ar-u-nu-latn':'en-GB',{dateStyle:'medium',timeStyle:'short'});
+let warned=false;
+function save(){try{localStorage.setItem(K,JSON.stringify(db))}catch(e){if(!warned){warned=true;toast(lang==='ar'?'تعذر الحفظ: المساحة ممتلئة أو التخزين معطل':'Could not save: storage is full or disabled',1)}}}
+function toast(m,err){const e=document.createElement('div');if(err)e.className='err';e.textContent=m;$('#toast').replaceChildren(e);clearTimeout(toast.t);toast.t=setTimeout(()=>e.remove(),2600)}
+const uid=()=>Date.now().toString(36)+Math.random().toString(36).slice(2,6);
+const used=p=>db.t.filter(x=>x.pid===p.id&&x.type==='used').reduce((a,x)=>a+x.qty,0);
+const given=p=>db.t.filter(x=>x.pid===p.id&&x.type==='given').reduce((a,x)=>a+x.qty,0);
+const loan=p=>db.t.filter(x=>x.pid===p.id&&x.type==='loan').reduce((a,x)=>a+x.qty,0)-db.t.filter(x=>x.pid===p.id&&x.type==='return').reduce((a,x)=>a+x.qty,0);
+const rem=p=>p.qty-used(p)-given(p)-loan(p);
+function log(p,type,qty,note){db.t.unshift({id:uid(),pid:p.id,pname:p.name,type,qty,note:note||'',ts:Date.now()})}
+
+function setLang(l){lang=l;try{localStorage.setItem(LK,l)}catch(e){}render()}
+function render(){
+ const h=document.documentElement;h.lang=lang;h.dir=lang==='ar'?'rtl':'ltr';
+ $('#ttl').innerHTML=esc(t('title'));
+ $('#lang').textContent=lang==='ar'?'EN':'عربي';$('#lang').onclick=()=>setLang(lang==='ar'?'en':'ar');
+ document.title=t('title');
+ $('#tabs').innerHTML=[['dash','dash'],['inv','inv'],['hist','hist']].map(([k,l])=>`<button role="tab" aria-selected="${tab===k}" data-t="${k}">${esc(t(l))}</button>`).join('');
+ $('#tabs').querySelectorAll('button').forEach(b=>b.onclick=()=>{tab=b.dataset.t;render()});
+ $('#app').innerHTML=tab==='dash'?dash():tab==='inv'?inv():hist();
+ bind();
+ if($('#modal').classList.contains('on')&&modalFn)modalFn();
+}
+function dash(){
+ const P=db.p,gv=db.t.filter(x=>x.type==='given').reduce((a,x)=>a+x.qty,0),lo=P.reduce((a,p)=>a+loan(p),0);
+ const top=[...P].sort((a,b)=>rem(b)-rem(a)).slice(0,6),mx=Math.max(1,...top.map(rem));
+ const recent=[...P].sort((a,b)=>b.created-a.created).slice(0,5);
+ return `<div style="display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:18px"><span></span><button class="btn" data-a="new">${esc(t('add'))}</button></div>
+ <div class="stats"><div class="stat hot"><b>${nf(P.length)}</b><span>${t('total')}</span></div><div class="stat"><b>${nf(lo)}</b><span>${t('loaned')}</span></div><div class="stat"><b>${nf(gv)}</b><span>${t('given')}</span></div></div>
+ <div class="panel"><h2>${t('chart')}</h2>${top.length?top.map(p=>`<div class="bar"><span class="l">${esc(p.name)}</span><i class="${rem(p)===0?'r':''}" style="width:${Math.round(rem(p)/mx*55)}%"></i><span>${nf(rem(p))}</span></div>`).join(''):`<div class="empty">${t('none')}</div>`}</div>
+ <div class="grid2" style="grid-template-columns:1fr"><div class="panel" style="display:none"><h2>${t('recent')}</h2>${recent.length?`<div class="list">${recent.map(p=>`<div class="row"><span class="n">${esc(p.name)}</span><span class="d">${df(p.date)}</span><b>${nf(p.qty)}</b></div>`).join('')}</div>`:`<div class="empty">${t('none')}</div>`}</div>
+ <div class="panel"><h2>${t('acts')}</h2>${txs(db.t.slice(0,6))}</div></div>`}
+function txs(a){return a.length?`<div class="list">${a.map(x=>`<div class="row"><span class="tag ${x.type}">${t('t_'+x.type)}</span><span class="n">${esc(x.pname)}${x.note?`<div class="d">${esc(x.note)}</div>`:''}</span><b>${x.type==='edit'?'':(['used','given','loan'].includes(x.type)?'−':'+')+nf(x.qty)}</b><span class="d">${tf(x.ts)}</span></div>`).join('')}</div>`:`<div class="empty">${t('noHist')}</div>`}
+function inv(){
+ let L=db.p.filter(p=>p.name.toLowerCase().includes(F.q.trim().toLowerCase()));
+ if(F.st==='in')L=L.filter(p=>rem(p)>0);if(F.st==='out')L=L.filter(p=>rem(p)<=0);if(F.c!=='all')L=L.filter(p=>p.country===F.c);
+ const s={new:(a,b)=>b.created-a.created,old:(a,b)=>a.created-b.created,name:(a,b)=>a.name.localeCompare(b.name,lang),qty:(a,b)=>rem(b)-rem(a),date:(a,b)=>b.date.localeCompare(a.date)}[F.s];L.sort(s);
+ const cs=[...new Set(db.p.map(p=>p.country).filter(Boolean))].sort();
+ const o=(v,k,cur)=>`<option value="${esc(v)}" ${cur===v?'selected':''}>${esc(k)}</option>`;
+ return `<div class="tools"><input id="q" type="search" placeholder="${esc(t('search'))}" value="${esc(F.q)}" aria-label="${esc(t('search'))}">
+ 
+ 
+ <select id="so">${[['new','s_new'],['old','s_old'],['name','s_name'],['qty','s_qty'],['date','s_date']].map(([v,k])=>o(v,t(k),F.s)).join('')}</select>
+ <button class="btn" data-a="new">${esc(t('add'))}</button></div>
+ ${L.length?`<div class="cards">${L.map(card).join('')}</div>`:`<div class="empty">${t('none')}</div>`}`}
+function card(p){const r=rem(p),pc=p.qty?Math.max(0,r)/p.qty*100:0;
+ return `<article class="card"><div class="pic">${p.img?`<img src="${p.img}" alt="${esc(p.name)}" data-a="zoom" data-id="${p.id}">`:esc(p.name.trim().charAt(0).toUpperCase())}</div>
+ <div class="cb"><h3>${esc(p.name)}</h3><span class="badge ${r>0?'':'out'}">${r>0?t('in'):t('out')}</span>
+ <div class="qty"><big>${nf(Math.max(0,r))}</big><span class="meta">${t('of')} ${nf(p.qty)} ${t('unit')}</span></div><div class="mini"><i style="width:${pc}%"></i></div>
+ <div class="meta">${df(p.date)}${p.country?' · '+esc(p.country):''}</div></div>
+ <div class="acts"><button class="btn sm" data-a="act" data-id="${p.id}">${t('status')}</button><button class="btn sm alt" data-a="log" data-id="${p.id}">${t('log')}</button><button class="btn sm alt" data-a="edit" data-id="${p.id}">${t('edit')}</button><button class="btn sm blk" data-a="del" data-id="${p.id}">${t('del')}</button></div></article>`}
+function hist(){return `<div class="panel"><h2>${t('hist')}</h2>${txs(db.t)}</div>`}
+
+function bind(){
+ document.querySelectorAll('[data-a]').forEach(b=>b.onclick=()=>{const p=db.p.find(x=>x.id===b.dataset.id),a=b.dataset.a;
+  if(a==='new')formM();else if(a==='edit')formM(p);else if(a==='act')actM(p);else if(a==='log')logM(p);else if(a==='del')delM(p);else if(a==='zoom')zoomM(p)});
+ const q=$('#q');if(q){q.oninput=()=>{F.q=q.value;const pos=q.selectionStart;render();const n=$('#q');n.focus();n.setSelectionRange(pos,pos)};
+  $('#so').onchange=e=>{F.s=e.target.value;render()}}
+}
+let modalFn=null,lastFocus=null;
+function openM(fn){modalFn=fn;lastFocus=document.activeElement;fn();$('#modal').classList.add('on');const f=$('#box').querySelector('input:not([type=file]),button');f&&f.focus()}
+function closeM(){$('#modal').classList.remove('on');modalFn=null;lastFocus&&lastFocus.focus&&lastFocus.focus()}
+$('#modal').addEventListener('mousedown',e=>{if(e.target.id==='modal')closeM()});
+document.addEventListener('keydown',e=>{if(e.key==='Escape'&&modalFn)closeM()});
+const err=(el,m)=>{el.classList.add('bad');el.parentElement.querySelector('.e').textContent=m};
+const today=()=>new Date().toISOString().slice(0,10);
+
+function compress(file){return new Promise((res,rej)=>{const r=new FileReader();r.onerror=rej;r.onload=()=>{const im=new Image();im.onerror=rej;im.onload=()=>{const m=480,k=Math.min(1,m/Math.max(im.width,im.height)),c=document.createElement('canvas');c.width=Math.round(im.width*k);c.height=Math.round(im.height*k);const x=c.getContext('2d');x.fillStyle='#fff';x.fillRect(0,0,c.width,c.height);x.drawImage(im,0,0,c.width,c.height);res(c.toDataURL('image/jpeg',.72))};im.src=r.result};r.readAsDataURL(file)})}
+function formM(p){let img=p?p.img:'';
+ openM(()=>{const v=p||{};
+ $('#box').innerHTML=`<h2>${p?t('editT'):t('newT')}</h2><div id="fm" novalidate>
+ <label class="f">${t('name')} *<input id="n" maxlength="80" value="${esc(v.name||'')}" autocomplete="off"><span class="e"></span></label>
+ <label class="f">${t('qty')} *<input id="qy" type="number" min="1" step="1" inputmode="numeric" value="${v.qty||''}"><span class="e"></span></label>
+ <label class="f">${t('date')} *<input id="dt" type="date" max="${today()}" value="${v.date||today()}"><span class="e"></span></label>
+ <label class="f">${t('country')} ${t('opt')}<input id="co" maxlength="60" value="${esc(v.country||'')}"></label>
+ <div class="f">${t('image')} ${t('opt')}<div id="pv">${img?`<img class="prev" src="${img}" alt="">`:''}</div><input id="im" type="file" accept="image/*"><span class="e" id="ie"></span>${img?`<button type="button" class="btn sm alt" id="rm" style="align-self:flex-start">${t('rm')}</button>`:''}</div>
+ <div class="foot"><button class="btn alt" id="cx" type="button">${t('cancel')}</button><button class="btn" id="sv" type="button">${t('save')}</button></div></div>`;
+ $('#cx').onclick=closeM;
+ const rm=$('#rm');if(rm)rm.onclick=()=>{img='';modalFn()};
+ $('#im').onchange=async e=>{const f=e.target.files[0];if(!f)return;if(!f.type.startsWith('image/')){$('#ie').textContent=t('eImg');return}
+  try{img=await compress(f);const keep=gather();modalFn();restore(keep)}catch(x){$('#ie').textContent=t('eImg')}};
+ $('#sv').onclick=()=>{let ok=true;document.querySelectorAll('.bad').forEach(x=>x.classList.remove('bad'));document.querySelectorAll('#box .e').forEach(x=>x.textContent='');
+  const n=$('#n'),q=$('#qy'),d=$('#dt');
+  if(!n.value.trim()){err(n,t('eReq'));ok=false}
+  const qv=Number(q.value);if(!q.value){err(q,t('eReq'));ok=false}else if(!Number.isInteger(qv)||qv<1){err(q,t('eQty'));ok=false}
+  else if(p&&qv<used(p)+given(p)+loan(p)){err(q,t('eMin')+' '+nf(used(p)+given(p)+loan(p)));ok=false}
+  if(!d.value){err(d,t('eReq'));ok=false}else if(d.value>today()){err(d,t('eDate'));ok=false}
+  if(!ok){const b=document.querySelector('#box .bad');b&&b.focus();return}
+  const data={name:n.value.trim(),qty:qv,date:d.value,country:$('#co').value.trim(),img};
+  if(p){Object.assign(p,data);log(p,'edit',0,'')}else{const np={id:uid(),created:Date.now(),...data};db.p.push(np);log(np,'arrival',np.qty,'')}
+  save();closeM();toast(t('saved'));render()}});
+ function gather(){return{n:$('#n').value,q:$('#qy').value,d:$('#dt').value,c:$('#co').value}}
+ function restore(k){$('#n').value=k.n;$('#qy').value=k.q;$('#dt').value=k.d;$('#co').value=k.c}
+}
+function actM(p){openM(()=>{const r=rem(p);
+ $('#box').innerHTML=`<h2>${t('actT')}</h2><p style="margin:0 0 12px"><b>${esc(p.name)}</b><br><span class="meta">${t('remain')}: ${nf(r)} ${t('unit')}</span></p>
+ <div class="seg" role="radiogroup">${['used','given','loan','return','available'].map((k,i)=>`<label><input type="radio" name="ty" value="${k}" ${i===0?'checked':''}>${t('a_'+k)}</label>`).join('')}</div>
+ <label class="f">${t('qty')}<input id="aq" type="number" min="1" step="1" inputmode="numeric" value="1"><span class="e"></span></label>
+ <label class="f">${t('note')} ${t('opt')}<textarea id="an" rows="2" maxlength="200"></textarea></label>
+ <div class="foot"><button class="btn alt" id="cx" type="button">${t('cancel')}</button><button class="btn" id="ap" type="button">${t('apply')}</button></div>`;
+ $('#cx').onclick=closeM;
+ $('#ap').onclick=()=>{const ty=document.querySelector('[name=ty]:checked').value,q=$('#aq'),v=Number(q.value),r=rem(p);document.querySelectorAll('.bad').forEach(x=>x.classList.remove('bad'));
+  if(!q.value||!Number.isInteger(v)||v<1){err(q,t('eQty'));return}
+  if(ty==='return'){if(v>loan(p)){err(q,t('eMax')+' '+nf(loan(p)));return}}else if(ty!=='available'&&v>r){err(q,t('eMax')+' '+nf(r));return}
+  if(ty==='available')p.qty+=v;log(p,ty,v,$('#an').value.trim());save();closeM();toast(t('done'));render()}})}
+function logM(p){openM(()=>{$('#box').innerHTML=`<h2>${esc(p.name)}</h2>${txs(db.t.filter(x=>x.pid===p.id))}<div class="foot"><button class="btn" id="cx" type="button">${t('close')}</button></div>`;$('#cx').onclick=closeM})}
+function delM(p){openM(()=>{$('#box').innerHTML=`<h2>${t('del')}</h2><p><b>${esc(p.name)}</b><br>${t('delQ')}</p><div class="foot"><button class="btn alt" id="cx" type="button">${t('cancel')}</button><button class="btn blk" id="dy" type="button">${t('yes')}</button></div>`;
+ $('#cx').onclick=closeM;$('#dy').onclick=()=>{db.p=db.p.filter(x=>x.id!==p.id);db.t=db.t.filter(x=>x.pid!==p.id);save();closeM();toast(t('deleted'));render()}})}
+function zoomM(p){openM(()=>{$('#box').innerHTML=`<img src="${p.img}" alt="${esc(p.name)}" style="width:100%;display:block;margin-bottom:12px"><div class="foot"><button class="btn" id="cx" type="button">${t('close')}</button></div>`;$('#cx').onclick=closeM})}
+render();
+</script>
+</body>
+</html>
